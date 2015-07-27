@@ -1,6 +1,6 @@
 ##Description
 
-Sending one-time link email for wordpress admin login.
+Sending one-time link email for wordpress admin login(Do Not Need Password).
 
 ##How To Use
 
