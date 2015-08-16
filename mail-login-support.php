@@ -43,7 +43,7 @@ function mail_login_access_link($email){
 }
 
 function generrate_access_token($string, $operation = 'ENCODE', $key = 'Mail-Login-Key', $expiry = 600) {
-	$hash = md5(time().rand()).md5($string.rand());
+	$hash = substr(md5(time().$string.rand()),8,16);
 	if($operation == 'DECODE') { 
 		if($result = wp_cache_get($key.'_'.$string, 'loper_cache')){
 			wp_cache_delete($key.'_'.$string, 'loper_cache');
