@@ -7,7 +7,7 @@ function mail_login_link() {
 function mail_login_access_check($hash){
 	$email = generrate_access_token($hash,$operation='DECODE');
 	if ($email != '') login_required($email);
-    wp_die('认证失败！', 'Authorization Not Allowed | '.get_option('blogname'), array('response' => '403'));
+	wp_die('认证失败！', 'Authorization Not Allowed | '.get_option('blogname'), array('response' => '403'));
 }
 
 function login_required($user_email){
@@ -45,14 +45,14 @@ function mail_login_access_link($email){
 function generrate_access_token($string, $operation = 'ENCODE', $key = 'Mail-Login-Key', $expiry = 600) {
 	$hash = substr(md5(time().$string.rand()),8,16);
 	if($operation == 'DECODE') { 
-		if($result = wp_cache_get($key.'_'.$string, 'loper_cache')){
-			wp_cache_delete($key.'_'.$string, 'loper_cache');
+		if($result = get_transient($key.'_'.$string)){
+			delete_transient($key.'_'.$string);
 			return $result;
 		}else{
 			return '';
 		}
 	} else { 
-		  wp_cache_set($key.'_'.$hash, $string, 'loper_cache', $expiry);
+		  set_transient($key.'_'.$hash, $string, $expiry);
 		  return $hash;
 	}
 }
