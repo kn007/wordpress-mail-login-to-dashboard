@@ -16,4 +16,4 @@ Testing in Wordpress 4.2.3, with loper theme.
 
 ##About
 
-[kn007's blog](http://kn007.net) 
+[kn007's blog](https://kn007.net) 
